@@ -56,8 +56,8 @@ class BowlingGame():
 
 
     def showEveryFrameScore(self):
-        for i in range(len(self.frameScore)):
-            print ("Current Frame is {}, score is {}".format(i,self.frameScore[i]))
+
+        return '|'.join([str(self.frameScore[i]) for i in range(len(self.frameScore))])
 
 if __name__=="__main__":
 
@@ -68,7 +68,7 @@ if __name__=="__main__":
     bg.roll(1)
     bg.roll(1)
     bg.roll(1)
-    bg.showEveryFrameScore()
+    print(bg.showEveryFrameScore())
 
 
 

@@ -43,8 +43,7 @@ class BowlingGame():
         return True if self.currentFlag+1 == BowlingGame.endFrame else False
 
     def showFramesScore(self):
-        scores = sum([self.frames[i].getScore() for i in range(self.currentFlag+1)])
-        return "Current Total Score is: "+str(scores)
+        return '|'.join([str(self.frames[i].getScore()) for i in range(self.currentFlag+1)])
 
 if __name__=="__main__":
 
