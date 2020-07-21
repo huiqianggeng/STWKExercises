@@ -25,6 +25,8 @@ class Frame():
 
 class BowlingGame():
 
+    initFrame = 11
+    maxScore = 10
     endFrame = 10
 
     def __init__(self):
@@ -41,7 +43,7 @@ class BowlingGame():
         #当当前的格子的两次扔球完毕时，更新格子标识
         if self.currentFlag >= 1:
             lastFrameScore = self.frameScore[self.currentFlag - 1]
-            if lastFrameScore == BowlingGame.endFrame:
+            if lastFrameScore == BowlingGame.maxScore:
                 curFirstScore = self.currentFrame.getRolls()[0]
                 lastFrameScore += curFirstScore
                 self.frameScore[self.currentFlag - 1] = lastFrameScore
