@@ -1,6 +1,11 @@
 
+
 class Direction():
-    directionList = ['W','S','E','N']
+    North = 'N'
+    East = 'E'
+    South = 'S'
+    West = 'W'
+    directionList = [West,South,East,North]
     def __init__(self,direction):
         self.direction = direction
 
@@ -17,7 +22,7 @@ class Direction():
 
 class MarsRoverPosition():
 
-    dirCorMap = {'N':1,'S':1,'E':0,'W':0}
+    dirCorMap = {Direction.North:1,Direction.South:1,Direction.East:0,Direction.West:0}
     def __init__(self,x,y,direction):
         self.coordinateX = x
         self.coordinateY = y
@@ -48,23 +53,30 @@ class MarsRoverPosition():
         else:
             self.coordinateY -= 1
 
+class Command():
+    Move = 'M'
+    Right = 'R'
+    Left = 'L'
+    Back = 'B'
+
 class MarsRover():
 
     def __init__(self,coordinateX,coordinateY,direction):
         self.marsRoverPosition = MarsRoverPosition(coordinateX,coordinateY,direction)
-
+        self.flag = True
     def receiveCommand(self,command):
         cmdList = list(command)
         for i  in range(len(cmdList)):
             cmd = cmdList[i]
-            if cmd == 'M':
+            if cmd == Command.Move:
                 self.marsRoverPosition.forward()
-            elif cmd == 'R':
+            elif cmd == Command.Right:
                 self.marsRoverPosition.turnRight()
-            elif cmd == 'L':
+            elif cmd == Command.Left:
                 self.marsRoverPosition.turnLeft()
-            elif cmd =='B':
-                if len(cmdList)>1 and cmdList[i-1]=='B':
+            elif cmd == Command.Back:
+                if len(cmdList)>1 and cmdList[i-1]==Command.Back and self.flag:
+                    self.flag = False
                     continue
                 else:
                     self.marsRoverPosition.back()
@@ -74,7 +86,7 @@ class MarsRover():
 if __name__=='__main__':
 
     marsRover = MarsRover(0,0,'N')
-    marsRover.receiveCommand("MMMRMBB")
+    marsRover.receiveCommand("MMMRMBBB")
 
 
 
